@@ -1,0 +1,54 @@
+﻿@model AdminInterface.Models.Project
+
+<h1>Redigera</h1>
+
+<div id="form-center" class="row">
+    <div id="form-create" class="col-md-4">
+        <form class="create create-width" asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreatedBy" />
+            <input type="hidden" asp-for="CreateAt" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+
+                <textarea asp-for="Description" class="form-control"> </textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input placeholder="kkk" asp-for="ImageFile" class="form-control" accept="image/*" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Skapa" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<article class="above-footer" >
+    <a id="above-footer" asp-action="Index">Till projekt listan</a>
+</article>
+
+@section Scripts {
+<script src="/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("Description");
+</script>
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
+

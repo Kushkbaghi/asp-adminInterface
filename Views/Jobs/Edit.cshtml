@@ -1,0 +1,54 @@
+﻿@model AdminInterface.Models.Job
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Redigera</h1>
+
+
+<div id="center" class="row ">
+    <div id="form-edit" class="col-md-4">
+        <form class="edit" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreatedBy" />
+            <input type="hidden" asp-for="CreateAt" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Place" class="control-label"></label>
+                <input asp-for="Place" class="form-control" />
+                <span asp-validation-for="Place" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="Start" class="control-label"></label>
+                <input  asp-for="Start" class="form-control" />
+                <span asp-validation-for="Start" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="End" class="control-label"></label>
+                <input asp-for="End" class="form-control" min=@Model.Start/>
+                <span asp-validation-for="End" class="text-danger"></span>
+                  
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Spara" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<article class="above-footer" >
+    <a id="above-footer" asp-action="Index">Till kurser</a>
+</article>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

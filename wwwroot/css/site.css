@@ -1,0 +1,141 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+header {
+    background-color: #d7c3a5;
+}
+
+.container-fluid {
+    max-width: 960px;
+    margin: 0% auto;
+}
+
+.navbar-brand {
+    color: #e3001a !important;
+    font-weight: 900;
+    font-size: 30px;
+}
+
+#container {
+    max-width: 960px;
+    margin: 0% auto;
+    display: block;
+}
+
+main {
+    margin-bottom: 5rem;
+    margin: 0% auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+/*// Login*/
+.identity {
+    border: .1rem #ee6675 solid;
+    border-radius: 1.5rem;
+    margin-left: 4px;
+}
+
+    /*//Hover*/
+    .identity:hover {
+        color: aliceblue !important;
+        background-color: #ee6675;
+    }
+
+.hover-nav:hover {
+    background: #ee6675;
+    border-radius: 50%;
+    opacity: 08;
+    transition: .2s ease-in;
+}
+
+.active {
+    background: #ee6675;
+    border-radius: 50%;
+}
+
+a {
+    text-decoration: none !important;
+    padding-left: 5px;
+}
+
+#logout {
+    background: none;
+    color: #e3001a !important;
+    opacity: 0.7;
+}
+
+#title-center, h1, h2 {
+    text-align: center;
+    width: 100%;
+}
+
+.smal-font {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+table {
+    width: 100%;
+}
+
+    table tr {
+        width: 100%;
+        padding: 5px;
+    }
+
+input {
+    width: 100%;
+}
+
+.project-img {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+footer {
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    text-align: center;
+    height: 5rem;
+}
+
+article {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#nav-width {
+    width: 100%;
+    max-width: 960px;
+}
+
+.login {
+    margin: 5% auto;
+    width: 500px;
+    min-width: 300px;
+    max-width: 500px;
+    border: .1rem solid gray;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 0% auto;
+}

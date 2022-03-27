@@ -1,0 +1,71 @@
+﻿body {
+    /* CSS defualt setting */
+    *, *::before, *::after box-sizing: border-box;
+    padding: 0;
+    line-height: 1.6;
+    margin: 0 auto;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn {
+    /* avoid to overlapping with el above when use of padding */
+    display: inline-block;
+    text-decoration: none;
+    transition: transform 0.5s ease-in-out, opacity 0.5s linear;
+    padding: .5rem;
+    border-radius: 0.3rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+:root {
+    --dark1: #4f575c;
+    --dark2: #0a0d25c5;
+    --dark3: #292b2c;
+    --dark4: #0a0d2525;
+    --light1: #ffff;
+    --light2: #e4e4e4;
+    --light3: #f7f7f7;
+    --light4: rgba(255, 255, 255, 0.527);
+    --primary: #0275d8;
+    --info: #5bc0de;
+    --warning: #f0ad4e;
+    --danger: #d9534f;
+    --extra: #881278d3;
+    --backgrund: linear-gradient(90deg, var(--info) 1%, var(--primary) 100%);
+    --fontFamilyItalic: "Lora", serif;
+    --fontFamilyRegular: "Josefin Sans", sans-serif;
+    --fontFamilyExt: "Varela Round", sans-serif;
+    --fontSizeH1: clamp(4rem, calc(4vw + 1.6rem), 5.5rem);
+    --fontSizeH2: clamp(3rem, calc(3.5vw + 1.6rem), 4.5rem);
+    --fontSizeH3: clamp(2.5rem, calc(3vw + 1.6rem), 4rem);
+    --fontSizeH4: clamp(2.3rem, calc(2vw + 1.6rem), 3rem);
+    --fontSizeH5: clamp(2rem, calc(1.5vw + 1.6rem), 2.5rem);
+    --fontSizeH6: clamp(1.8rem, calc(0.5vw + 1.6rem), 2rem);
+    --fontSizeP: clamp(1.6rem, calc(0.2rem + 1.6rem), 1.8rem);
+    --shadowBox: -0.1px 0.01px 20px -10px var(--dark1);
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    outline: none;
+    border: none;
+}
+
+.main {
+    max-width: 960px !important;
+}

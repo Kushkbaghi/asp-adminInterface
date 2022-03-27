@@ -1,0 +1,74 @@
+﻿@model AdminInterface.Models.Project
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>
+    Detalj
+
+</h1>
+<div id="center">
+
+
+    <table class="table tabel-detali" id="table-center ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
+        </tr>
+        <tr class:"description">
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <td>
+
+                @Html.Raw(Model.Description)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <td>
+                <a href="@Html.DisplayFor(model => model.Url)" target="_blank"><i class="bi bi-box-arrow-up-right"></i>Projekt länk</a>
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <td>
+
+                <img class="project-img" src="/images/@Html.DisplayFor(model=> model.ImageName)" />
+
+
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateAt)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreateAt)
+            </td>
+        </tr>
+    </table>
+    <div>
+        @Html.ActionLink("Redigera", "Edit", new {id = Model.Id  }) |
+        <a asp-action="Index">Till projekt listan</a>
+    </div>
+</div>

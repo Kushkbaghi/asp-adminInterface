@@ -1,0 +1,79 @@
+﻿@model IEnumerable<AdminInterface.Models.Job>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 id="title-center"> Arbetslivserfarenhet</h1>
+
+<p>
+    <a asp-action="Create"><i class="bi bi-plus-circle"></i> Skapa nytt </a>
+</p>
+<div id="index">
+    @foreach (var item in Model)
+    {
+        <div class="tables">
+            <table>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Place)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Place)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Start)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Start)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.End)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.End)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedBy)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => item.CreateAt)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateAt)
+                    </td>
+                </tr>
+                <tr>
+
+                    <a id="edit" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Redigera</a> |
+                    <a id="detail" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-arrow-right-square"></i> Detalj</a> |
+                    <a id="delete" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash3"></i>Radera</a>
+
+                </tr>
+
+
+
+            </table>
+        </div>
+    }
+</div>

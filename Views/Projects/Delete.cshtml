@@ -1,0 +1,75 @@
+﻿@model AdminInterface.Models.Project
+
+
+@{
+    ViewData["Title"] = "Radera";
+}
+
+<h1>@ViewData["Title"] </h1>
+
+<H2 class="title-center smal-font">Är du säker på att du vill ta bort detta? </H2>
+<div id="center">
+
+
+    <table class="table tabel-detali" id="table-center ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
+        </tr>
+        <tr class:"description">
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <td>
+
+                @Html.Raw(Model.Description)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <td>
+                <a href="@Html.DisplayFor(model => model.Url)" target="_blank"><i class="bi bi-box-arrow-up-right"></i>Projekt länk</a>
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <td>
+
+                <img class="project-img" src="/images/@Html.DisplayFor(model=> model.ImageName)" />
+
+
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateAt)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreateAt)
+            </td>
+        </tr>
+    </table>
+      <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Radera" class="btn btn-danger" /> |
+        <a id="above-footer" asp-action="Index">Till project listan</a>
+    </form>
+</div>

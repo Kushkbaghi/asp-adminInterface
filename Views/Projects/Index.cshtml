@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<AdminInterface.Models.Project>
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 id="title-center"> Projekt</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    <p>
+        <a asp-action="Create"><i class="bi bi-plus-circle"></i> Skapa nytt </a>
+    </p>
+}
+<div id="index">
+    @foreach (var item in Model)
+    {
+        <div class="tables">
+            <table>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                </tr>
+                <tr class:"description">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <td>
+                        @Html.Raw(item.Description)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Url)
+                    </th>
+                    <td>
+                        <a href="@Html.DisplayFor(modelItem => item.Url)" target="_blank"><i class="bi bi-box-arrow-up-right"></i>Projekt länk</a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ImageName)
+                    </th>
+                    <td>
+
+                        <img class="project-img" src="/images/@Html.DisplayFor(modelItem => item.ImageName)" />
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedBy)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => item.CreateAt)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateAt)
+                    </td>
+                </tr>
+                <tr>
+
+                    <a id="edit" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Redigera</a> |
+                    <a id="detail" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-arrow-right-square"></i> Detalj</a> |
+                    <a id="delete" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash3"></i>Radera</a>
+
+                </tr>
+
+            </table>
+        </div>
+    }
+</div>

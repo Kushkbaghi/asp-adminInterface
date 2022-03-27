@@ -1,0 +1,68 @@
+﻿@model AdminInterface.Models.Course
+
+@{
+    ViewData["Title"] = "Radera";
+}
+
+<h1>@ViewData["Title"] </h1>
+
+<H2 class="title-center smal-font">Är du säker på att du vill ta bort detta? </H2>
+<div id="center">
+    <table class="table tabel-detali" id="table-center">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Prograssion)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Prograssion)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Start)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Start)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.End)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.End)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateAt)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreateAt)
+            </td>
+        </tr>
+    </table>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Radera" class="btn btn-danger" /> |
+        <a id="above-footer" asp-action="Index">Till kurser</a>
+    </form>
+</div>
+

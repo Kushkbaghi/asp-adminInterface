@@ -1,0 +1,66 @@
+﻿@model AdminInterface.Models.Course
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>
+    Detalj
+</h1>
+<div id="center">
+
+    <table class="table tabel-detali">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Prograssion)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Prograssion)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Start)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Start)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.End)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.End)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateAt)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreateAt)
+            </td>
+        </tr>
+    </table>
+    <div>
+        @Html.ActionLink("Redigera", "Edit", new { id = Model.Id }) |
+        <a asp-action="Index">Till kurs listan</a>
+    </div>
+</div>

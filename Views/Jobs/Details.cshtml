@@ -1,0 +1,69 @@
+﻿@model AdminInterface.Models.Job
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>
+    Detalj
+
+</h1>
+<div id="center">
+
+
+    <table class="table tabel-detali" id="table-center ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+
+            <td>
+                @Html.DisplayFor(model => model.Title)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Place)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Place)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Start)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.Start)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.End)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.End)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreatedBy)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateAt)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CreateAt)
+            </td>
+        </tr>
+    </table>
+    <div>
+        @Html.ActionLink("Redigera", "Edit", new {id = Model.Id  }) |
+        <a  asp-action="Index">Till arbetserfarenheter</a>
+    </div>
+</div>
