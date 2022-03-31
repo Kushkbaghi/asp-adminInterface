@@ -4,7 +4,7 @@
 
 <div id="form-center" class="row">
     <div id="form-create" class="col-md-4">
-        <form class="create create-width" asp-action="Create" enctype="multipart/form-data">
+        <form class="create create-width" asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="CreatedBy" />
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ImageFile" class="control-label"></label>
-                <input placeholder="kkk" asp-for="ImageFile" class="form-control" accept="image/*" />
+                <input  asp-for="ImageFile" class="form-control" accept="image/*" />
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
 

@@ -11,7 +11,7 @@ namespace AdminInterface
         static GlobalVariables()
         {
             client.BaseAddress = new Uri("https://localhost:7249/api/");        // Set API URL
-            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }

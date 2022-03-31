@@ -10,7 +10,7 @@
     <a asp-action="Create"><i class="bi bi-plus-circle"></i> Skapa nytt </a>
 </p>
 <div id="index">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Reverse())
     {
         <div class="tables">
             <table>
@@ -63,11 +63,13 @@
                         @Html.DisplayFor(modelItem => item.CreateAt)
                     </td>
                 </tr>
-                <tr>
+                <tr class="menus">
+                    <td class="menu">
+                        <a  asp-action="Edit" asp-route-id="@item.Id"><i class="bi edit bi-pencil-square"></i> Redigera</a> |
+                        <a  asp-action="Details" asp-route-id="@item.Id"><i class="bi detail bi-arrow-right-square"></i> Detalj</a> |
+                        <a  asp-action="Delete" asp-route-id="@item.Id"><i class="bi delete bi-trash3"></i>Radera</a>
+                    </td>
 
-                    <a id="edit" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Redigera</a> |
-                    <a id="detail" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-arrow-right-square"></i> Detalj</a> |
-                    <a id="delete" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash3"></i>Radera</a>
 
                 </tr>
 

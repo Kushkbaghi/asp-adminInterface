@@ -29,6 +29,9 @@ table img {
 }
 
 tr {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
     padding: 3px;
     border-bottom: .1px solid #3d3d3d3d;
     width: 100%;
@@ -42,16 +45,18 @@ tr {
 th {
     text-align: left;
     padding: 5px 0%;
+    margin-top: 0;
+    border: none;
 }
 
 td {
-    text-align: right;
-    padding: 5px 0%;
+    text-align: left;
+    padding: 5px 15px;
+    border: none;
 }
 
 .description {
     padding-left: 5px;
-    background: red;
 }
 
 @media (max-width: 908px) {

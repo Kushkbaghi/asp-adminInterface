@@ -13,7 +13,7 @@ namespace AdminInterface.Models
         [Display(Name = "Projek namn")]
         public string? Name { get; set; }
 
-        [StringLength(250)]
+        [StringLength(500)]
         [Required(ErrorMessage = "Beskrivning måste vara med!")]
         [Display(Name = "Beskrivning")]
         public string? Description { get; set; }
@@ -27,16 +27,12 @@ namespace AdminInterface.Models
         [Display(Name = "Bildnamn")]
         public string? ImageName { get; set; }
 
-        [StringLength(225)]
-        [Display(Name = "Bild länk")]
-        public string? ImageLink { get; set; } = "llll";
+
 
         [NotMapped]
         public IFormFile? ImageFile { get; set; }
 
-        [StringLength(64)]
-        [Display(Name = "Teknik")]
-        public string? Tags { get; set; }
+
 
         [StringLength(32)]
         [Display(Name = "Skapat av")]

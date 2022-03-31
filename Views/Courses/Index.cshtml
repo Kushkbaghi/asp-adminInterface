@@ -18,7 +18,7 @@
 }
 
 <div id="index">
-    @foreach (var item in Model)
+    @foreach (Course item in Model.Reverse())
     {
         <div class="tables">
             <table>
@@ -37,6 +37,14 @@
                     </th>
                     <td>
                         @Html.DisplayFor(modelItem => item.Prograssion)
+                    </td>
+                </tr>
+                  <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Place)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Place)
                     </td>
                 </tr>
                 <tr>
@@ -71,14 +79,16 @@
                         @Html.DisplayFor(modelItem => item.CreateAt)
                     </td>
                 </tr>
-                <tr>
-                    <a id="edit" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Redigera</a> |
-                    <a id="detail" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-arrow-right-square"></i> Detalj</a> |
-                    <a id="delete" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash3"></i>Radera</a>
-
-
+                <tr class="menus">
+                    <td class="menu">
+                        <a  asp-action="Edit" asp-route-id="@item.Id"><i class="bi edit bi-pencil-square"></i> Redigera</a> |
+                        <a  asp-action="Details" asp-route-id="@item.Id"><i class="bi detail bi-arrow-right-square"></i> Detalj</a> |
+                        <a  asp-action="Delete" asp-route-id="@item.Id"><i class="bi delete bi-trash3"></i>Radera</a>
+                    </td>
 
                 </tr>
+
+
             </table>
         </div>
     }

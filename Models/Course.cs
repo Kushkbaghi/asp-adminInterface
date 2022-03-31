@@ -12,6 +12,11 @@ namespace AdminInterface.Models
         [Display(Name = "Kursnamn")]
         public string? Name { get; set; }
 
+        [StringLength(32)]
+        [Required(ErrorMessage = "Universitetsnamn måste vara med!")]
+        [Display(Name = "Universitet")]
+        public string? Place { get; set; }
+
         [StringLength(1)]
         [Required(ErrorMessage = "Prograssion måste vara med!")]
         [Display(Name = "Progression")]

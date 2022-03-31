@@ -21,9 +21,10 @@ namespace AdminInterface.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Job> jobs;
+            Job job = new Job();            // Create object of Job class
 
             var responsTask = GlobalVariables.client.GetAsync("jobs").Result;
+
             return View(responsTask.Content.ReadFromJsonAsync<List<Job>>().Result);
         }
 
@@ -58,9 +59,10 @@ namespace AdminInterface.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Place,Start,End,CreatedBy,CreateAt")] Job job)
         {
+            job.CreatedBy = User.Identity.Name.Split("@")[0];
             if (ModelState.IsValid)
             {
-                var responsTaslk = GlobalVariables.client.PostAsJsonAsync<Job>("jobs/", job).Result;
+                var responsTaslk = GlobalVariables.client.PostAsJsonAsync("jobs/", job).Result;
                 return RedirectToAction(nameof(Index));
             }
             return View();
@@ -96,7 +98,7 @@ namespace AdminInterface.Controllers
 
             if (ModelState.IsValid)
             {
-                var responsTaslk = GlobalVariables.client.PutAsJsonAsync<Job>("jobs/" + id.ToString(), job).Result;
+                var responsTaslk = GlobalVariables.client.PutAsJsonAsync("jobs/" + id.ToString(), job).Result;
                 return RedirectToAction(nameof(Index));
             }
             return View(job);

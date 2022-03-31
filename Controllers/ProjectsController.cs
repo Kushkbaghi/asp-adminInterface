@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
+using System.Net.Http;
 
 namespace AdminInterface.Controllers
 {
@@ -20,13 +21,13 @@ namespace AdminInterface.Controllers
             _context = context;
         }
 
-        [Route("/")]
-        public async Task<IActionResult> Index()
+        [Route("[controller]/index")]
+        public IActionResult Index()
         {
-            IEnumerable<Project> project;        // Create object of Course class
+            Project project = new Project();        // Create object of Project class
 
             // Fetch data from API
-            var responseTask = GlobalVariables.client.GetAsync("projects").Result;
+            HttpResponseMessage? responseTask = GlobalVariables.client.GetAsync("projects").Result;
 
             if (responseTask == null)           // check response
             {
@@ -91,26 +92,39 @@ namespace AdminInterface.Controllers
                     // Set file namne
                     project.ImageName = fileName;
 
-                    project.ImageLink = path;
-
+                    //// Mask image
+                    //CreateNewImg(fileName);
                     // Resize image
                     CreateImageFile(fileName);
                 }
 
-                var responseTask = GlobalVariables.client.PostAsJsonAsync<Project>("projects", project).Result;
+                var responseTask = GlobalVariables.client.PostAsJsonAsync("projects", project).Result;
                 return RedirectToAction(nameof(Index));
             }
             return View(project);
         }
+        // Mssk image
+        private void CreateNewImg(string fileName)
+        {
 
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            using (var img = Image.FromFile(wwwRootPath + "/images/" + fileName))
+            {
+                img.Mask(new Rectangle(0, 0, 300, 300), ImageFrameShape.Ellipse)
+                .SaveAs(Path.Combine(wwwRootPath + "/images/thumb_" + fileName));
+
+            }
+
+        }
         // Resize image
         private void CreateImageFile(string fileName)
         {
+
             string wwwRootPath = _hostEnvironment.WebRootPath;
 
-            using (var img = Image.FromFile(Path.Combine(wwwRootPath + "/images/", fileName)))
+            using (var img = Image.FromFile(Path.Combine(wwwRootPath + "/images/" + fileName)))
             {
-                img.Scale(100, 100).SaveAs(Path.Combine(wwwRootPath + "/images/thumb_" + fileName));
+                img.Scale(600, 350).SaveAs(Path.Combine(wwwRootPath + "/images/thumb_" + fileName));
             }
         }
 
@@ -118,6 +132,7 @@ namespace AdminInterface.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
+            Project project = new Project();
             if (id == null)         // error if it´s not founds
             {
                 return NotFound();
@@ -132,10 +147,10 @@ namespace AdminInterface.Controllers
 
         // POST: Edit an item
 
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Url,ImageName,ImageLink,Tags,CreatedBy,CreateAt")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Url,ImageFile,CreatedBy,CreateAt")] Project project)
         {
             if (id != project.Id)
             {
@@ -144,13 +159,48 @@ namespace AdminInterface.Controllers
 
             if (ModelState.IsValid)
             {
-                var responsTask = GlobalVariables.client.PutAsJsonAsync<Project>("projects/" + id.ToString(), project).Result;
-                return RedirectToAction(nameof(Index));
+                // If image exists
+                if (project.ImageFile != null)
+                {
+                    string wwwRootPath = _hostEnvironment.WebRootPath;                                      // Get absolute avalue of root path
+                    string fileName = Path.GetFileNameWithoutExtension(project.ImageFile.FileName);         //Get file just filename
+                    string extension = Path.GetExtension(project.ImageFile.FileName);                       // Get the fime extension
+                    fileName = fileName + DateTime.Now.ToString("yyyyMMddssff") + extension;
+
+                    // Output paht
+                    string path = Path.Combine(wwwRootPath + "/images/" + fileName);
+
+                    using (var fileStream = new FileStream(path, FileMode.Create))          //Create an instans of file
+                    {
+                        await project.ImageFile.CopyToAsync(fileStream);                    // Copy content of uploaded file to fileStream
+                    }
+
+                    Project prj = new Project()
+                    {
+                        Id = id,
+                        Name = project.Name,
+                        Url = project.Url,
+                        ImageName = fileName,
+                        Description = project.Description
+                    };
+                    // Set file namne
+
+                    // Resize image
+                    CreateImageFile(fileName);
+                }
+
+                var responsTask = GlobalVariables.client.PutAsJsonAsync<Project>("projects/" + project.Id, project).Result;
+                if (responsTask.IsSuccessStatusCode)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+
             }
             else
             {
                 return NotFound();
             }
+            return NotFound();
         }
 
         // GET: delete item in detail

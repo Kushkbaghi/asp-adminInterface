@@ -13,14 +13,13 @@ namespace AdminInterface.Controllers
         public CoursesController(ApplicationDbContext context)
         {
             _conext = context;
-   
         }
 
         // GET: all courses
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Project> project;
+            Course course = new Course();           // Create object of Course class
             var responsTask = GlobalVariables.client.GetAsync("courses").Result;
 
             return View(responsTask.Content.ReadFromJsonAsync<List<Course>>().Result);
@@ -50,7 +49,7 @@ namespace AdminInterface.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,Prograssion,Start,End,CreatedBy,CreateAt")] Course course)
+        public IActionResult Create([Bind("Id,Place, Name,Prograssion,Start,End,CreatedBy,CreateAt")] Course course)
         {
             course.CreatedBy = User.Identity.Name.Split("@")[0];
             try
@@ -82,7 +81,8 @@ namespace AdminInterface.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Prograssion,Start,End,CreatedBy,CreateAt")] Course course)
+        public async Task<IActionResult> Edit(int id,
+            [Bind("Id,Place, Name,Prograssion,Start,End,CreatedBy,CreateAt")] Course course)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace AdminInterface.Controllers
                 {
                     return NotFound();
                 }
-                var respons = GlobalVariables.client.PutAsJsonAsync<Course>("courses/" + id.ToString(), course);
+                var respons = GlobalVariables.client.PutAsJsonAsync("courses/" + id.ToString(), course).Result;
 
                 return RedirectToAction(nameof(Index));
             }

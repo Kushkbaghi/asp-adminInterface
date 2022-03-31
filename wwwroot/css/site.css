@@ -59,16 +59,13 @@ main {
         background-color: #ee6675;
     }
 
-.hover-nav:hover {
-    background: #ee6675;
-    border-radius: 50%;
-    opacity: 08;
-    transition: .2s ease-in;
+.hover-nav:hover, .nav-link:hover {
+    color: orangered;
 }
 
 .active {
-    background: #ee6675;
-    border-radius: 50%;
+    border-bottom: #ee6675 2px solid;
+    color: whitesmoke;
 }
 
 a {
@@ -138,4 +135,19 @@ article {
     border-radius: 5px;
     padding: 15px;
     margin: 0% auto;
+}
+
+.menus {
+    border-bottom: none;
+}
+
+.menu {
+    text-align: center;
+    padding: 10px;
+}
+
+#identity-form {
+    
+    width: 100%;
+    max-width: 550px;
 }

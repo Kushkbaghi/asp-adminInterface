@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    ViewData["start"] = DateTime.Now.ToString("yyyy-MM--dd"); // set default to start data
 }
 
 <h1>Skapa ny kurs</h1>
@@ -16,6 +17,11 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Place" class="control-label"></label>
+                <input asp-for="Place" class="form-control" />
+                <span asp-validation-for="Place" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Prograssion" class="control-label"></label>
@@ -44,5 +50,7 @@
 </article>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }
